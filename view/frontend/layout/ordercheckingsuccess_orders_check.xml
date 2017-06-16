@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2016 Magestore. All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Sales\Block\Order\Info" name="order.status" template="Magestore_OrderCheckingSuccess::order/order_status.phtml"/>
+            <block class="Magento\Sales\Block\Order\Info" name="order.date" template="Magestore_OrderCheckingSuccess::order/order_date.phtml"/>
+            <block class="Magestore\OrderCheckingSuccess\Block\Orders\Info" name="order_info">
+                <block class="Magento\OfflinePayments\Block\Info\Checkmo" name="payment_info"/>
+            </block>
+            <block class="Magento\Sales\Block\Order\View" name="sales.order.view" cacheable="false"
+                   after="sales.order.info.links">
+                <block class="Magestore\OrderCheckingSuccess\Block\Orders\Items" name="order_items"
+                       template="Magestore_OrderCheckingSuccess::order/items.phtml">
+                    <block class="Magento\Framework\View\Element\RendererList" name="sales.order.items.renderers"
+                           as="renderer.list"/>
+                    <block class="Magento\Sales\Block\Order\Totals" name="order_totals" template="Magestore_OrderCheckingSuccess::order/totals.phtml">
+                        <arguments>
+                            <argument name="label_properties" xsi:type="string">colspan="4" class="mark"</argument>
+                            <argument name="value_properties" xsi:type="string">class="amount"</argument>
+                        </arguments>
+                        <block class="Magento\Tax\Block\Sales\Order\Tax" name="tax" template="order/tax.phtml"/>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

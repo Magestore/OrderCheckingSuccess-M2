@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © 2016 Magestore. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magestore\OrderCheckingSuccess\Block\Main $block */
+?>
+
+<form class="formcheck" id="fulfil-order-checking" action="<?php echo  $this->getUrl('*/*/check') ?>" method="POST">
+    <?php if(!$block->isCustomerLogedIn()): ?>
+        <div class="row">
+            <div class="label_item">Email: </div>
+            <div class="control">
+                <input id="email" name="email" placeholder="Enter your email address" data-validate="{required:true, 'validate-email':true}" type="email">
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="row">
+        <div class="label_item">Order ID: </div>
+        <div class="control">
+            <input id="order_id" name="order_id" placeholder="Enter your Order ID" data-validate="{required:true}" type="text">
+        </div>
+    </div>
+    <button class="action subscribe primary submit-button" title="Check order" type="submit">
+        <span>CHECK</span>
+    </button>
+</form>
+<style>
+    .submit-button{
+        float: right;
+    }
+    .row{
+        margin-bottom: 15px;
+        display: block;
+    }
+    .formcheck{
+        width: 350px;
+        padding: 10px;
+    }
+    .label_item{
+        margin: 10px 0px;
+    }
+</style>
+
+<script type="text/x-magento-init">
+    {
+        "#fulfil-order-checking": {
+            "validation": {}
+        }
+    }
+</script>
